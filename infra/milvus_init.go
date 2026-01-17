@@ -16,7 +16,7 @@ var (
 	Cfg    config.Config
 )
 
-func Init() error {
+func Milvus_Init() error {
 	data, err := os.ReadFile("./config.yaml")
 	if err != nil {
 		return fmt.Errorf("read config.yaml: %w", err)
