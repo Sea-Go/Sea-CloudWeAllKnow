@@ -1,4 +1,4 @@
-package bootstrap
+package config
 
 type Config struct {
 	Milvus MilvusConfig `yaml:"milvus"`
