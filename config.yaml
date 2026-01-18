@@ -8,3 +8,11 @@ ali:
   apikey: "sk-737281fd1c884de7a57601f41c310e81"
   baseurl:  "https://dashscope.aliyuncs.com/compatible-mode/v1"
 
+Kafka:
+  address: "localhost:39092"
+
+
+neo4j:
+  address: "neo4j://localhost:37687"
+  username: "neo4j"
+  password: "Sea-TryGo"
