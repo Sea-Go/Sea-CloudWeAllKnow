@@ -2,42 +2,25 @@ package infra
 
 import (
 	"context"
-	"fmt"
-	"os"
 	"sea/config"
 	"strings"
 
 	"github.com/milvus-io/milvus/client/v2/milvusclient"
-	"gopkg.in/yaml.v3"
 )
 
-var (
-	Milvus *milvusclient.Client
-	Cfg    config.Config
-)
-
-func Milvus_Init() error {
-	data, err := os.ReadFile("./config.yaml")
-	if err != nil {
-		return fmt.Errorf("read config.yaml: %w", err)
-	}
-
-	if err := yaml.Unmarshal(data, &Cfg); err != nil {
-		return fmt.Errorf("parse config.yaml: %w", err)
-	}
-
+func MilvusInit() error {
 	ctx := context.Background()
-
+	cfg := config.Cfg
 	client, err := milvusclient.New(ctx, &milvusclient.ClientConfig{
-		Address:  Cfg.Milvus.Address,
-		Username: Cfg.Milvus.Username,
-		Password: Cfg.Milvus.Password,
+		Address:  cfg.Milvus.Address,
+		Username: cfg.Milvus.Username,
+		Password: cfg.Milvus.Password,
 	})
 	if err != nil {
-		return fmt.Errorf("infra milvus client: %w", err)
+		return err
 	}
 
-	db := strings.TrimSpace(Cfg.Milvus.DBName)
+	db := strings.TrimSpace(cfg.Milvus.DBName)
 	if db == "" {
 		db = "default"
 	}
@@ -46,14 +29,13 @@ func Milvus_Init() error {
 		// 已存在就忽略
 		msg := strings.ToLower(err.Error())
 		if !strings.Contains(msg, "already exists") && !strings.Contains(msg, "exist") {
-			return fmt.Errorf("create database %q: %w", db, err)
+			return err
 		}
 	}
 
 	if err := client.UseDatabase(ctx, milvusclient.NewUseDatabaseOption(db)); err != nil {
-		return fmt.Errorf("use database %q: %w", db, err)
+		return err
 	}
-
-	Milvus = client
+	
 	return nil
 }
