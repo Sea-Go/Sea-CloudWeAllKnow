@@ -3,11 +3,13 @@ package schema
 import "github.com/milvus-io/milvus/client/v2/entity"
 
 func RecllCandidateTableName() *entity.Schema {
-	id := entity.NewField().
+	chunkId := entity.NewField().
 		WithName("id").
 		WithDataType(entity.FieldTypeString).
 		WithIsPrimaryKey(true).
 		WithIsAutoID(false)
+
+	ar
 
 	vec := entity.NewField().
 		WithName("vector").
@@ -24,7 +26,7 @@ func RecllCandidateTableName() *entity.Schema {
 		WithDescription("coarse recall vectors").
 		WithAutoID(false).
 		WithDynamicFieldEnabled(true).
-		WithField(id).
+		WithField(chunkId).
 		WithField(vec).
 		WithField(tag)
 }
