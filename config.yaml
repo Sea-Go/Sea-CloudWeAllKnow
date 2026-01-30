@@ -5,7 +5,7 @@ milvus:
   dbname: "test"
 
 ali:
-  apikey: "sk-737281fd1c884de7a57601f41c310e81"
+  apikey: ""
   baseurl:  "https://dashscope.aliyuncs.com/compatible-mode/v1"
 
 Kafka:
