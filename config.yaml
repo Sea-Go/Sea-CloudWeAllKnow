@@ -7,6 +7,10 @@ milvus:
 ali:
   apikey: ""
   baseurl:  "https://dashscope.aliyuncs.com/compatible-mode/v1"
+  multimodal_baseurl: "https://dashscope.aliyuncs.com/api/v1/services/embeddings/multimodal-embedding/multimodal-embedding"
+  text_model: "text-embedding-v4"
+  multimodal_model: "qwen2.5-vl-embedding"
+  dimensions: 2048
 
 Kafka:
   address: "localhost:39092"
