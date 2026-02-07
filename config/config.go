@@ -25,8 +25,12 @@ type MilvusConfig struct {
 }
 
 type AliConfig struct {
-	APIKey  string `mapstructure:"apikey" yaml:"apikey"`
-	BaseURL string `mapstructure:"baseurl" yaml:"baseurl"`
+	APIKey            string `mapstructure:"apikey" yaml:"apikey"`
+	BaseURL           string `mapstructure:"baseurl" yaml:"baseurl"`
+	MultimodalBaseURL string `mapstructure:"multimodal_baseurl" yaml:"multimodal_baseurl"`
+	TextModel         string `mapstructure:"text_model" yaml:"text_model"`
+	MultimodalModel   string `mapstructure:"multimodal_model" yaml:"multimodal_model"`
+	Dimensions        int    `mapstructure:"dimensions" yaml:"dimensions"`
 }
 
 type KafkaConfig struct {
