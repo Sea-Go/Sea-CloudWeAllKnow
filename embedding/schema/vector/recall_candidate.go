@@ -9,8 +9,6 @@ func RecllCandidateTableName() *entity.Schema {
 		WithIsPrimaryKey(true).
 		WithIsAutoID(false)
 
-	ar
-
 	vec := entity.NewField().
 		WithName("vector").
 		WithDataType(entity.FieldTypeFloatVector).
