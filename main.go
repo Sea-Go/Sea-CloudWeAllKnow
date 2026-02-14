@@ -14,6 +14,7 @@ func main() {
 	zlog.InitLogger("./log/Recommand.log", "debug")
 	zlog.L().Info("service started")
 	defer zlog.Sync()
+
 	err := config.Load("./config.yaml")
 	if err != nil {
 		zlog.L().Error("config load failed",
@@ -39,5 +40,8 @@ func main() {
 			"message": "pong",
 		})
 	})
-	router.Run()
+	if err := router.Run(); err != nil {
+		zlog.L().Error("http server run failed", zap.Error(err))
+		panic(err)
+	}
 }

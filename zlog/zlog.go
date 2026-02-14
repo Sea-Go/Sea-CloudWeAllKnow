@@ -59,8 +59,7 @@ func InitLogger(logpath string, loglevel string) {
 	core := zapcore.NewCore(
 		// zapcore.NewConsoleEncoder(encoderConfig),
 		zapcore.NewJSONEncoder(encoderConfig),
-		// zapcore.NewMultiWriteSyncer(zapcore.AddSync(os.Stdout), zapcore.AddSync(&write)), // 打印到控制台和文件
-		write,
+		zapcore.NewMultiWriteSyncer(zapcore.AddSync(os.Stdout), write), // 打印到控制台和文件
 		level,
 	)
 	// 开启开发模式，堆栈跟踪
